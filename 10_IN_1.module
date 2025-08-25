@@ -1,0 +1,49 @@
+#!name=All IN ONE
+#!desc=By: Phuc Anh IT, quocchienn
+# Shadowrocket Configuration - All IN ONE
+# Cập nhật: 04-05-2025
+# Bản Quyền Thuộc Về Phuc Anh IT 
+# Credit: Quoc Chien, Đỗ X Hùng, ѵăռŧυấռ 💤
+# Mã nguồn này đã được fix vào 04/05/2025
+# Ai dùng module này nếu gắn trên TikTok hoặc Facebook hãy ghi @PhucAnhIT để tôn trọng tác giả!
+
+[General]
+bypass-system = true
+skip-proxy = *.local, *.crashlytics.com
+tun-excluded-routes = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12
+
+[Rule]
+AND,((DOMAIN-SUFFIX,googlevideo.com), (PROTOCOL,UDP)),REJECT
+AND,((DOMAIN,youtubei.googleapis.com), (PROTOCOL,UDP)),REJECT
+
+[URL Rewrite]
+(^https?://[\w-]+\.googlevideo\.com/(?!dclk_video_ads).+?)&ctier=L(&.+?),ctier,(.+) $1$2$3 302
+^https?://[\w-]+\.googlevideo\.com/(?!(dclk_video_ads|videoplayback?)).+&oad _ reject-200
+^https?://(www|s)\.youtube\.com/api/stats/ads _ reject-200
+^https?://(www|s)\.youtube\.com/(pagead|ptracking) _ reject-200
+^https?://s\.youtube\.com/api/stats/qoe\?adcontext _ reject-200
+
+[MITM]
+hostname = %APPEND% api.revenuecat.com, buy.itunes.apple.com, api.picsart.com, us-central1-alight-creative.cloudfunctions.net, api.adapty.io, carrotweather.herokuapp.com, lcs-mobile-cops.adobe.io, order.creativeappnow.com, api.mwm-users.com, us-central1-muslim-pro-app.cloudfunctions.net, api.gptkeyboard.app, prod.studysmarter.de, api.qonversion.io, api.blinkist.com, subscription.grammarly.com, api.esound.app, api.purchasely.io, spclient.wg.spotify.com, api-sub.meitu.com, redirector*.googlevideo.com, *.googlevideo.com, www.youtube.com, s.youtube.com, youtubei.googleapis.com, api-mobile.soundcloud.com, photos.adobe.io, 
+api.deepfaker.app, purchases.ws.pho.to, pro.smallpdf.com, api.alohaprofile.com, piccollage.com, spclient.wg.spotify.com, h5.xiuxiu.meitu.com, api.xiuxiu.meitu.com
+
+[Script]
+revenuecat = type=http-response,pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts$|subscribers\/[^/]+$),requires-body=1,max-size=-1,timeout=60,script-path=https://raw.githubusercontent.com/PhucAnhIT/Locket/refs/heads/Crack/locket.js
+deleteHeader = type=http-request, pattern=^https:\/\/api\.revenuecat\.com\/.+\/(receipts|subscribers), script-path=https://raw.githubusercontent.com/dhungx/modules-shadowrocket/refs/heads/main/js/locket/deleteHeader.js, timeout=60
+http-response ^https://api\.revenuecat\.com/.+/(receipts$|subscribers/[^/]+$) script-path=https://raw.githubusercontent.com/quocchienn/Make/refs/heads/crack/crack.js, requires-body=true, timeout=5, tag=Crack
+http-request ^https://api.revenuecat.com/.+/(receipts$|subscribers/?(.*?)*$) script-path=https://raw.githubusercontent.com/quocchienn/Make/refs/heads/crack/VSCO.js, requires-body=true, timeout=5, tag=VSCO
+http-request https://api.picsart.com/gw-v2/shop/subscription/apple/purchases script-path=https://raw.githubusercontent.com/quocchienn/Make/refs/heads/crack/PicsArt.js, requires-body=true, timeout=5, tag=PicsArt
+http-response https://us-central1-alight-creative.cloudfunctions.net/getAccountStatusAndLicenses script-path=https://raw.githubusercontent.com/quocchienn/Make/refs/heads/crack/AlightMotion.js, requires-body=true, timeout=5, tag=Alight Motion
+http-response https://api.sandbox.love/accounts/current script-path=https://raw.githubusercontent.com/quocchienn/Make/refs/heads/crack/SandBox.js, requires-body=true, timeout=5, tag=Sandbox Pixel Art
+youtube.response = type=http-response,pattern=^https://youtubei\.googleapis\.com/youtubei/v1/(browse|next|player|search|reel/reel_watch_sequence|guide|account/get_setting|get_watch),requires-body=1,max-size=-1,binary-body-mode=1,engine=script,script-path=https://raw.githubusercontent.com/dhungx/modules-shadowrocket/refs/heads/main/js/Yt/youtube.response.preview.js,argument="{\"lyricLang\":\"{{{ngôn ngữ dịch lời bài hát}}}\",\"captionLang\":\"{{{ngôn ngữ dịch phụ đề}}}\",\"blockUpload\":{{{chặn nút tải lên}}},\"blockImmersive\":{{{chặn nút chọn đoạn}}},\"debug\":{{{kích hoạt chế độ gỡ lỗi}}}}"
+spotify-json = type=http-request,type=http-request,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/,requires-body=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js
+spotify-proto = type=http-response,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$,requires-body=1,binary-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js,script-update-interval=0
+WinkForeverVipCrack.js=type=http-response,pattern=^https?:\/\/api-sub\.meitu\.com\/v2\/user\/vip_info_by_group\.json,requires-body=1,script-path=https://raw.githubusercontent.com/yqc007/QuantumultX/master/WinkForeverVipCrack.js
+SoundCloudGo+=type=http-response,pattern=https://api-mobile.soundcloud.com/configuration/ios,requires-body=1,script-path=https://raw.githubusercontent.com/Marol62926/MarScrpt/main/soundcloud.js
+LightRoom=type=http-response,pattern=^https:\/\/photos\.adobe\.io\/v2\/accounts*,requires-body=1,script-path=https://raw.githubusercontent.com/litieyin/AD_VIP/main/Script/lightroom.js
+deepfaker=type=http-response,pattern=^https:\/\/api\.deepfaker\.app\/api\/v1\/account\/update-profile,requires-body=1,script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/deepfaker.js
+Piccollage解锁=type=http-response,pattern=https://piccollage.com/api/graphql,requires-body=1,script-path=https://raw.githubusercontent.com/Marol62926/MarScrpt/main/picCollage.js
+AlohaVPN浏览器=type=http-response,pattern=https://api.alohaprofile.com/v1/profile_info,requires-body=1,script-path=https://raw.githubusercontent.com/Marol62926/MarScrpt/main/aloha.js
+iScreenn=type=http-response,pattern=^https:\/\/buy\.itunes\.apple\.com\/verifyReceipt$,requires-body=1,script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/iScreenn.js
+Usage=type=http-response,pattern=^https:\/\/api\.revenuecat\.com\/v1\/subscribers.+,requires-body=1,script-path=https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/Usage.js
+美图秀秀=type=http-response,pattern=^https?:\/\/(h5|api)\.xiuxiu\.meitu\.com\/v\d\/(h\d\/vip|vip|user)\/,requires-body=1,script-path=https://raw.githubusercontent.com/I-am-R-E/QuantumultX/main/JavaScript/MeiTuXiuXiu.js
