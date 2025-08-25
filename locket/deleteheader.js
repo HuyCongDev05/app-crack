@@ -1,5 +1,20 @@
-
 const version = 'V1.0.2';
 
+function setHeaderValue(headers, key, value) {
+    const lowerKey = key.toLowerCase();
+    if (lowerKey in headers) {
+        headers[lowerKey] = value;
+    } else {
+        headers[key] = value;
+    }
+}
 
-function setHeaderValue(e,a,d){var r=a.toLowerCase();r in e?e[r]=d:e[a]=d}var modifiedHeaders=$request.headers;setHeaderValue(modifiedHeaders,"X-RevenueCat-ETag",""),$done({headers:modifiedHeaders});
+var modifiedHeaders = $request.headers;
+
+setHeaderValue(modifiedHeaders, "X-RevenueCat-ETag", "");
+
+setHeaderValue(modifiedHeaders, "X-Device-Country", "US");
+setHeaderValue(modifiedHeaders, "X-Subscriber-Country", "US");
+setHeaderValue(modifiedHeaders, "X-Apple-Locale", "en_US");
+
+$done({headers: modifiedHeaders});
