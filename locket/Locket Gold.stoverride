@@ -18,7 +18,7 @@ http:
 
 script-providers:
   "locket-gold-response":
-    url: https://raw.githubusercontent.com/quocchienn/locket/refs/heads/Gold/Locket_Gold_v7.js
+    url: https://raw.githubusercontent.com/HuyCongDev05/app-crack/refs/heads/main/locket/Locket_Gold_v7.js
     interval: 86400
 
   "locket-gold-request":

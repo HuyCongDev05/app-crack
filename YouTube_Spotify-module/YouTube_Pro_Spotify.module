@@ -1,6 +1,3 @@
-#!name= YouTube_Pro_Spotify
-#!desc= Quocchien
-
 [General]
 force-http-engine-hosts = script.hub, *.script.hub
 
