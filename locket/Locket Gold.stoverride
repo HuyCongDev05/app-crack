@@ -1,10 +1,3 @@
-name: |-
-  Locket Gold
-desc: |-
-  By: Quốc Chiến ❤️‍🩹
-icon: |-
-  https://raw.githubusercontent.com/quocchienn/quocchien/refs/heads/Quocchien_Module/3FBB33AB-A7A3-4EFD-85C3-45653C4255E6.webp
-
 http:
 
   mitm:
@@ -29,5 +22,5 @@ script-providers:
     interval: 86400
 
   "locket-gold-request":
-    url: https://raw.githubusercontent.com/quocchienn/lockcrack/refs/heads/module/deleteheader.js
+    url: https://raw.githubusercontent.com/HuyCongDev05/app-crack/refs/heads/main/locket/deleteheader.js
     interval: 86400
