@@ -1,38 +1,50 @@
-$done({
-    body: JSON.stringify({
-        "status": "success",
-        "response": [
-            {
-                "status": "SUBSCRIPTION_PURCHASED",
-                "order_id": "490001314520000",
-                "original_order_id": "490001314520000",
-                "is_trial": true,
-                "plan_meta": {
-                    "storage_limit_in_mb": 20480,
-                    "frequency": "yearly",
-                    "scope_id": "full",
-                    "id": "com.picsart.editor.subscription_yearly",
-                    "product_id": "subscription_yearly",
-                    "level": 2000,
-                    "auto_renew_product_id": "com.picsart.editor.subscription_yearly",
-                    "type": "renewable",
-                    "tier_id": "gold_old",
-                    "permissions": [
-                        "premium_tools_standard",
-                        "premium_tools_ai"
-                    ],
-                    "description": "china"
+const url = $request.url;
+let obj = JSON.parse($response.body);
+
+if (url.indexOf("/users/show/me.json") !== -1) {
+    obj.permissions = [
+        "premium_tools_standard",
+        "premium_tools_ai",
+        "premium_tools_basic"
+    ];
+    obj.shop_subscriptions = [
+        {
+            "status": "SUBSCRIPTION_PURCHASED",
+            "order_id": "490001314520000",
+            "original_order_id": "490001314520000",
+            "is_trial": true,
+            "subscription_id": "com.picsart.editor.subscription_yearly",
+            "is_eligible_for_introductory": false,
+            "purchase_date": 1687020148000,
+            "expire_date": 4092599349000
+        }
+    ];
+} else if (url.indexOf("/guard/users/order") !== -1) {
+    obj.response = {
+        "tier": {
+            "id": "gold",
+            "level": 2000,
+            "permissions": [
+                "premium_tools_standard",
+                "premium_tools_ai",
+                "premium_tools_basic"
+            ],
+            "storage_limit_in_mb": 20480,
+            "device_limit": 99
+        },
+        "additionalInfo": {
+            "scopesTrialEligibility": [
+                {
+                    "scopeId": "mobile_pro_trial",
+                    "canUseTrial": false
                 },
-                "limitation": {
-                    "max_count": 5,
-                    "limits_exceeded": false
-                },
-                "reason": "ok",
-                "subscription_id": "com.picsart.editor.subscription_yearly",
-                "is_eligible_for_introductory": false,
-                "purchase_date": 1687020148000,
-                "expire_date": 4092599349000
-            }
-        ]
-    })
-});
+                {
+                    "scopeId": "mobile_web_pro_packages",
+                    "canUseTrial": false
+                }
+            ]
+        }
+    };
+}
+
+$done({ body: JSON.stringify(obj) });
