@@ -10,4 +10,4 @@ Picsart=type=http-response,pattern=^https:\/\/api\.(picsart|meiease)\.c(n|om)\/g
 
 [MITM]
 
-hostname = %APPEND% api.picsart.c*, api.meiease.c*
+hostname = %APPEND% api.picsart.com, api.picsart.cn, api.meiease.com, api.meiease.cn
