@@ -60,7 +60,7 @@ Nicegram VIP=type=http-request,pattern=^https?:\/\/restore-access\.indream\.app\
 # From PhotoRoom
 PhotoRoom=type=http-response,pattern=^https?:\/\/api\.revenuecat\.com\/v1\/(subscribers\/[^\/]+$|receipts$),requires-body=1,script-path=https://raw.githubusercontent.com/HuyCongDev05/app-crack/main/PhotoRoom/PhotoRoom.js
 # From PicsArt
-Picsart=type=http-response,pattern=^https:\/\/api\.(picsart|meiease)\.c(n|om)\/gw-v2\/(users\/show\/me\.json|guard\/users\/order),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/HuyCongDev05/app-crack/main/PicsArt/PicsArt.js
+Picsart=type=http-response,pattern=^https:\/\/api\.(picsart|meiease)\.c(n|om)\/gw-v2\/(users\/show\/me\.json|guard\/users\/order|shop\/subscription\/apple\/purchases),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/HuyCongDev05/app-crack/main/PicsArt/PicsArt.js
 # From Pixelcut
 Pixelcut=type=http-response,pattern=https://api.revenuecat.com/v1/(receipts|subscribers)/*,requires-body=1,script-path=https://raw.githubusercontent.com/HuyCongDev05/app-crack/main/Pixelcut/pixelcut.js
 # From Spotify
